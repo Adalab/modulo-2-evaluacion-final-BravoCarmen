@@ -1,34 +1,43 @@
-"use strict";
+'use strict';
 //variables
-const inputSearch = document.querySelector(".js-input");
-const btn = document.querySelector(".js-btn");
-const container = document.querySelector(".js-container");
-const containerFav = document.querySelector(".js-containerFav");
-const url = "//api.tvmaze.com/singlesearch/shows?q=girls";
+const inputSearch = document.querySelector('.js-input');
+const btn = document.querySelector('.js-btn');
+const container = document.querySelector('.js-list');
+const url = '//api.tvmaze.com/search/shows?q=girls';
 
 //arrays vacios de las dos secciones: encontrados y favoritos
-// sectionSearch = [];
+let series = [];
 // sectionFav = [];
 
-//Pintar unas películas
-fetch(url)
-  .then((response) => response.json())
-  .then((dataAPI) => {
-    console.log(dataAPI);
-    container.innerHTML += dataAPI;
-  });
+// funcion API - fetch y pintar en html
+function getInfoApi() {
+  let url = `//api.tvmaze.com/search/shows?q=girls`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((dataAPI) => {
+      console.log(dataAPI);
+      renderShowList(dataAPI);
+    });
+}
+getInfoApi();
 
-//funcion API
-// function getInfoApi(event) {
-//   event.preventDefault();
-//   const name = document.querySelector(".js-input").value;
-//   fetch(`http://api.tvmaze.com/search/shows?q=${name}`)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       series = data;
-//       dataResult();
-//     });
-// }
+function renderShows(series) {
+  let html = '';
+  html += `<li class="show"> <div> <h2>${series.show.name}</h2>`;
+  if (series.show.image !== null) {
+    html += `<img title="${series.show.name}" src="${series.show.image.medium}" alt="${series.show.name}">`;
+  } else {
+    html += `<img title="${series.show.name}" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${series.show.name}"/>`;
+  }
+  html += `</div> </li>`;
 
-//eventos
-// btn.addEventListener("click", btnSearch);
+  return html;
+}
+
+function renderShowList(showList) {
+  for (const series of showList) {
+    container.innerHTML += renderShows(series);
+  }
+}
+
+// btn.addEventListener('click', handleSearch);
