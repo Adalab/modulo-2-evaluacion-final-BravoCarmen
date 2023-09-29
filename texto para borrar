@@ -22,11 +22,10 @@ let sectionFav = [];
 // }
 // getInfoApi();
 
-// funcion pintar una serie y fetch
-
+// funcion pintar una serie
 function renderShows(data) {
   let html = '';
-  html += `<ul><li id=${data.show.id} class="js-show-one" ><h2>${data.show.name}</h2>`;
+  html += `<ul id=${data.show.id} class="js-show-one"><li><h2>${data.show.name}</h2>`;
   if (data.show.image !== null) {
     html += `<img title="${data.show.name}" src="${data.show.image.medium}" alt="${data.show.name}">`;
   } else {
@@ -38,38 +37,26 @@ function renderShows(data) {
 }
 // funcion pintar la lista de series
 function renderShowList(showList) {
-  container.innerHTML = '';
   for (const oneShow of showList) {
     container.innerHTML += renderShows(oneShow);
   }
   addEventstoShows();
 }
 
-// Función para renderizar la lista de favoritos
-function renderFavList() {
-  containerFav.innerHTML = '';
-  for (const favShow of sectionFav) {
-    containerFav.innerHTML += renderShows(favShow);
-  }
-  addEventstoShows(); // Volver a agregar eventos a las series en la lista de favoritos
-}
-
-// funcion clic fav
+//funcion clic fav
 function handleFav(event) {
-  event.preventDefault();
-  const idShowClick = parseInt(event.currentTarget.id);
-  console.log(idShowClick);
+  console.log(event.currentTarget.id);
+  const idShowClick = event.currentTarget.id;
   //buscar la info del fav que seleccionemos
-  let foundShow = sectionShows.find((item) => item.show.id === idShowClick);
-  const indexFav = sectionFav.findIndex((item) => item.show.id === idShowClick);
-  if (indexFav === -1) {
-    sectionFav.push(foundShow);
-  } else {
-    sectionFav.splice(indexFav, 1);
-  }
-  renderFavList(sectionFav);
-}
+  const foundShow = sectionShows.find((item) => (item.id = idShowClick));
+  console.log(foundShow);
+  sectionFav.push(foundShow);
+  console.log(sectionFav);
+  //comprobar si está ya pintada en el listado de
 
+  //pintar favoritos en su lista
+  //   containerFav.innerHTML += renderShows(foundShow);
+}
 //funcion para seleccionar todas las series que aparecen
 function addEventstoShows() {
   const allShows = document.querySelectorAll('.js-show-one');
