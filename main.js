@@ -10,20 +10,33 @@ const containerFav = document.querySelector('.js-fav');
 let sectionShows = [];
 let sectionFav = [];
 
+const showsFavLS = JSON.parse(localStorage.getItem('favShows'));
+if (showsFavLS !== null) {
+  sectionFav = showsFavLS;
+  renderFavList(sectionFav);
+} else {
+  getInfoApi();
+}
+
 // funcion API - fetch girls
-// function getInfoApi() {
-//   let url = `//api.tvmaze.com/search/shows?q=girls`;
-//   fetch(url)
-//     .then((response) => response.json())
-//     .then((dataGirls) => {
-//       console.log(dataGirls);
-//       renderShowList(dataGirls);
-//     });
+function getInfoApi() {
+  let url = `//api.tvmaze.com/search/shows?q=girls`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((dataGirls) => {
+      console.log(dataGirls);
+      renderShowList(dataGirls);
+    });
+}
+
+//funcion preview inciar pagina
+// if (sectionFav === '') {
+//   container.innerHTML = getInfoApi();
+// } else {
+//   container.innerHTML = renderFavList;
 // }
-// getInfoApi();
 
 // funcion pintar una serie y fetch
-
 function renderShows(data) {
   let html = '';
   html += `<ul><li id=${data.show.id} class="js-show-one" ><h2>${data.show.name}</h2>`;
@@ -45,11 +58,12 @@ function renderShowList(showList) {
   addEventstoShows();
 }
 
-// Función para renderizar la lista de favoritos
+// Función para renderizar la lista de favoritos y pintarlas
 function renderFavList() {
   containerFav.innerHTML = '';
   for (const favShow of sectionFav) {
     containerFav.innerHTML += renderShows(favShow);
+    localStorage.setItem('favShows', JSON.stringify(sectionFav));
   }
   addEventstoShows(); // Volver a agregar eventos a las series en la lista de favoritos
 }
@@ -59,7 +73,7 @@ function handleFav(event) {
   event.preventDefault();
   const idShowClick = parseInt(event.currentTarget.id);
   console.log(idShowClick);
-  //buscar la info del fav que seleccionemos
+  //buscar la info del fav que seleccionamos, si esta lo borra y si no lo pinta
   let foundShow = sectionShows.find((item) => item.show.id === idShowClick);
   const indexFav = sectionFav.findIndex((item) => item.show.id === idShowClick);
   if (indexFav === -1) {
