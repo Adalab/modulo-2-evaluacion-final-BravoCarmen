@@ -39,16 +39,30 @@ function getInfoApi() {
 // funcion pintar una serie y fetch
 function renderShows(data) {
   let html = '';
-  html += `<ul><li id=${data.show.id} class="js-show-one" ><h2>${data.show.name}</h2>`;
+  let isFavorite = false;
+
+  for (const fav of sectionFav) {
+    if (fav.show.id === data.show.id) {
+      isFavorite = true;
+      break; // Termina el bucle si la serie está en favoritos
+    }
+  }
+
+  html += `<ul class="list" ><li id=${
+    data.show.id
+  } class="box-show js-show-one ${
+    isFavorite && 'selected'
+  }" ><h2 class="show-title" >${data.show.name} </h2>`;
   if (data.show.image !== null) {
-    html += `<img title="${data.show.name}" src="${data.show.image.medium}" alt="${data.show.name}">`;
+    html += `<img title="${data.show.name}" src="${data.show.image.medium}" alt="${data.show.name}" class="img-size">`;
   } else {
-    html += `<img title="${data.show.name}" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${data.show.name}"/>`;
+    html += `<img title="${data.show.name}" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${data.show.name}" class="img-size" />`;
   }
   html += `</li></ul>`;
 
   return html;
 }
+
 // funcion pintar la lista de series
 function renderShowList(showList) {
   container.innerHTML = '';
@@ -63,6 +77,7 @@ function renderFavList() {
   containerFav.innerHTML = '';
   for (const favShow of sectionFav) {
     containerFav.innerHTML += renderShows(favShow);
+
     localStorage.setItem('favShows', JSON.stringify(sectionFav));
   }
   addEventstoShows(); // Volver a agregar eventos a las series en la lista de favoritos
@@ -78,8 +93,10 @@ function handleFav(event) {
   const indexFav = sectionFav.findIndex((item) => item.show.id === idShowClick);
   if (indexFav === -1) {
     sectionFav.push(foundShow);
+    event.currentTarget.classList.add('selected');
   } else {
     sectionFav.splice(indexFav, 1);
+    event.currentTarget.classList.remove('selected');
   }
   renderFavList(sectionFav);
 }

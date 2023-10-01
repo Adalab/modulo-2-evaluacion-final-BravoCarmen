@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+}
+
+header {
+  background-image: url(/fondoweb\ copia.jpg);
+  background-repeat: no-repeat;
+  background-position: 0% 85%;
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 40vh;
+}
+
+.title_web {
+  color: red;
+
+  text-shadow: 0 0 60px #fff;
+  font-family: 'Lobster', cursive;
+  font-size: 80px;
+  padding: 0rem 6rem 1rem;
+}
+
+.form_search {
+  padding-left: 6rem;
+}
+
+.input {
+  font-size: 20px;
+  width: 20rem;
+}
+
+.btn {
+  width: 80px;
+  height: 27px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+}
+
+main {
+  display: flex;
+  gap: 15rem;
+  padding: 2rem 6rem;
+}
+.subtitle {
+  font-size: 1.4em;
+  width: 20rem;
+  padding-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.fav_result {
+  color: white;
+}
+
+.search_result {
+  color: white;
+}
+
+.show-title {
+  padding-bottom: 0.5rem;
+}
+
+.container_fav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.container_search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.img-size {
+  width: 180px;
+}
+.list {
+  display: flex;
+  list-style: none;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.box-show {
+  padding: 15px;
+  border-radius: 25px;
+  color: white;
+  font-size: 12px;
+  background-color: rgb(49, 49, 49);
+}
+
+.selected {
+  background-color: red;
+  font-family: 'Lobster', cursive;
+  padding: 15px;
+  border-radius: 25px;
+  color: white;
+  font-size: 12px;
+}

@@ -4,31 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tus series favoritas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link rel="stylesheet" href="./css/root.css" />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
 
   <body>
-    <h1>Buscador de series</h1>
-    <form action="">
-      <input
-        class="input js-input"
-        id="input"
-        name="input"
-        type="text"
-        placeholder="Ej: Friends"
-      />
+    <header>
+      <h1 class="title_web">Buscador de series</h1>
+      <form class="form_search" action="">
+        <input
+          class="input js-input"
+          id="input"
+          name="input"
+          type="text"
+          placeholder="Ej: Friends"
+        />
+        <button class="btn js-btn" type="submit">Buscar</button>
+      </form>
+    </header>
+    <main class="main">
+      <div class="fav_result">
+        <h2 class="subtitle">Listado de favoritos</h2>
 
-      <button class="js-btn" type="submit">Buscar</button>
-    </form>
-    <h2>Resultado de búsqueda:</h2>
-    <section class="js-list"></section>
-    <h2>Listado de favoritos</h2>
-    <section class="js-fav"></section>
+        <section class="container_fav js-fav"></section>
+      </div>
+      <div class="search_result">
+        <h2 class="subtitle">Resultado de búsqueda:</h2>
+
+        <section class="container_search js-list"></section>
+      </div>
+    </main>
     <script src="main.js"></script>
   </body>
 </html>
