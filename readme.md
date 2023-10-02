@@ -5,7 +5,7 @@ Si sales y vuelves a entrar en la página encontrarás tu lista de favoritos.
 
 
 
-http://beta.adalab.es/modulo-1-evaluacion-final-BravoCarmen/
+http://beta.adalab.es/modulo-2-evaluacion-final-BravoCarmen/
 
 
 ## Instalación
