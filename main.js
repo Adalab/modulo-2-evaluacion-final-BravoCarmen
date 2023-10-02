@@ -12,12 +12,10 @@ let sectionFav = [];
 
 const showsFavLS = JSON.parse(localStorage.getItem('favShows'));
 
-//condicional si no hay nada en fav, me pone girls
+//condicional para que si hay algo en fav, lo pinte
 if (showsFavLS !== null) {
   sectionFav = showsFavLS;
   renderFavList(sectionFav);
-} else {
-  getInfoApi();
 }
 
 // funcion API - fetch girls
@@ -30,13 +28,6 @@ function getInfoApi() {
       renderShowList(dataGirls);
     });
 }
-
-//funcion preview inciar pagina
-// if (sectionFav === '') {
-//   container.innerHTML = getInfoApi();
-// } else {
-//   container.innerHTML = renderFavList;
-// }
 
 // funcion pintar una serie y fetch
 function renderShows(data) {
