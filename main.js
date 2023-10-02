@@ -11,6 +11,8 @@ let sectionShows = [];
 let sectionFav = [];
 
 const showsFavLS = JSON.parse(localStorage.getItem('favShows'));
+
+//condicional si no hay nada en fav, me pone girls
 if (showsFavLS !== null) {
   sectionFav = showsFavLS;
   renderFavList(sectionFav);
