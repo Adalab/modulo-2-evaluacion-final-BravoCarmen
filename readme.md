@@ -5,8 +5,7 @@ Si sales y vuelves a entrar en la página encontrarás tu lista de favoritos.
 
 
 
-http://beta.adalab.es/modulo-2-evaluacion-final-BravoCarmen/
-
+http://bravocarmen.github.io/BuscadorSeries-BravoCarmen/
 
 ## Instalación
 
